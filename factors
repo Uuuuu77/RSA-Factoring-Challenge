@@ -1,0 +1,20 @@
+#!/usr/bin/python3
+
+import sys
+import math
+
+def factorize(number):
+    for x in range(2, math.isqrt(number) + 1):
+        if number % x == 0:
+            return x, number // x
+    return number, 1
+
+def main():
+    with open(sys.argv[1], 'r') as file:
+        for line in file:
+            number = int(line.strip())
+            p, q = factorize(number)
+            print(f"{number}={p}*{q}")
+
+if __name__ == "__main__":
+    main()
