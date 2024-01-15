@@ -1,0 +1,27 @@
+#!/usr/bin/python3
+
+import sys
+import math
+
+def is_prime(n):
+    if n < 2:
+        return False
+    for x in range(2, math.isqrt(n) + 1):
+        if n % x == 0:
+            return False
+    return True
+
+def factorize(number):
+    for y in range(2, math.isqrt(number) + 1):
+        if number % y == 0 and is_prime(y) and is_prime(number // y):
+            return y, number // y
+    return number, 1
+
+def main():
+    with open(sys.argv[1], 'r') as file:
+        number = int(file.read().strip())
+        p, q = factorize(number)
+        print(f"{number}={p}*{q}")
+
+if __name__ == "__main__":
+    main()
